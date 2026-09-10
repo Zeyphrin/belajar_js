@@ -55,3 +55,35 @@ const fiveStar = products.map(product => product.reviews.filter(
 
 // console.log(fiveStar);  
 
+const averageRatings = products.map(product => {
+  const totalReviews = product.reviews.length;
+  
+  if (totalReviews === 0) {
+    return { id: product.id, title: product.title, averageRating: 0 };
+  }
+
+  const sumRating = product.reviews.reduce((acc, curr) => acc + curr.rating, 0);
+  const avg = sumRating / totalReviews;
+
+  return {
+    id: product.id,
+    title: product.title,
+    averageRating: Number(avg.toFixed(2))
+  };
+});
+
+// console.log(averageRatings);
+
+const mostReviewProducts = products.reduce((prev, current) => {
+  return current.reviews.length > prev.reviews.length ? current : prev;
+});
+
+// console.log(mostReviewProducts.title);
+
+const allRatings = products.map(product => 
+  product.reviews.map(review => review.rating)
+);
+
+console.log(allRatings);
+
+

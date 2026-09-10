@@ -32,4 +32,24 @@ const products = [
 ];
 
 
+function findProductById(products, id) { 
+  return products.find(product => product.id === id);
+}
+//  console.log(findProductById(products, 10));
 
+ function lowStockProducts(products) {
+  return products.filter(product => product.stock < 10);
+ }
+ 
+//  const lowStock = lowStockProducts(products);
+//  console.log(lowStock);
+
+function updateStock (products, id, newStock) {
+  return products.map(p => (
+    p.id === id ? {...p, stock: newStock} : p
+  )
+  );
+}
+
+const updatedProducts = updateStock(products, 3, 20);
+console.log(updatedProducts[2]); 
